@@ -86,7 +86,7 @@ namespace ShopifySharp
                             .Any(r => r.SelectToken("extensions.code")?.Value<string>() == "THROTTLED") 
                             == true)
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                        await Task.Delay(TimeSpan.FromSeconds(20), cancellationToken);
                         continue;
                     }
 
@@ -121,7 +121,7 @@ namespace ShopifySharp
                     {
                         //Only retry if breach caused by full bucket
                         //Shopify sometimes return 429 for other limits (e.g if too many variants are created)
-                        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                        await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
                     }
                 }
             }
