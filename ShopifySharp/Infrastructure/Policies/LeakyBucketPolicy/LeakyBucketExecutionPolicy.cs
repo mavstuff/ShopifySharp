@@ -121,7 +121,9 @@ namespace ShopifySharp
                     {
                         //Only retry if breach caused by full bucket
                         //Shopify sometimes return 429 for other limits (e.g if too many variants are created)
-                        await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
+                        Console.WriteLine("LeakyBucketExecutionPolicy ex {0}", ex?.ToString());
+
+                        await Task.Delay(TimeSpan.FromMinutes(20), cancellationToken);
                     }
                 }
             }
