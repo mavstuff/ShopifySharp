@@ -4,7 +4,7 @@ namespace ShopifySharp.Lists
 {
     public class LinkHeaderParseResult<T>
     {
-        public class PagingLink<T>
+        public class PagingLink<TEntity>
         {
             public string Url { get; }
 
@@ -22,9 +22,9 @@ namespace ShopifySharp.Lists
                 Fields = fields;
             }
 
-            public ListFilter<T> GetFollowingPageFilter(int? limit = null, string fields = null)
+            public ListFilter<TEntity> GetFollowingPageFilter(int? limit = null, string fields = null)
             {
-                return new ListFilter<T>(this.PageInfo, limit ?? this.Limit, fields ?? this.Fields);
+                return new ListFilter<TEntity>(this.PageInfo, limit ?? this.Limit, fields ?? this.Fields);
             }
         }
 
